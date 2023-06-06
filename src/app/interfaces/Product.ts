@@ -4,3 +4,7 @@ export interface IProduct {
     price: number;
     img?: string
 }
+export interface IResponse {
+    message: string;
+    products: IProduct[];
+}
