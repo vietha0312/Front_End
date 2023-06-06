@@ -9,6 +9,12 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { UserComponent } from './layout/user/user.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { ProductAddComponent } from './pages/admin/product-add/product-add.component';
+import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     ProductListComponent,
     UserComponent,
     AdminComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AdminProductComponent,
+    ProductPageComponent,
+    ProductDetailComponent,
+    ProductAddComponent,
+    ProductUpdateComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
