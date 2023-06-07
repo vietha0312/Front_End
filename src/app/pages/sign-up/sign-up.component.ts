@@ -42,7 +42,7 @@ export class SignUpComponent {
     if (this.formSignup.valid) {
       this.authService.signup(this.formSignup.value).subscribe(data => {
         console.log(data);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       })
     }
   }
