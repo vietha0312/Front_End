@@ -1,1 +1,19 @@
-<p>user works!</p>
+<div class="container-fluid">
+    <div class="">
+        <div class="bg-gray-400 flex">
+            <div class="mx-5 py-2 text-lg font-bold">
+                <a routerLink="">Home</a>
+            </div>
+            <div class="py-2 text-lg font-bold ">
+                <a routerLink="product">Product</a>
+            </div>
+
+        </div>
+        <div class="mx-auto my-3">
+            <main class="text-center">
+                <router-outlet />
+            </main>
+        </div>
+        <footer class="font-bold text-center">FOOTER</footer>
+    </div>
+</div>

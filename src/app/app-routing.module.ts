@@ -7,10 +7,22 @@ import { ProductAddComponent } from './pages/admin/product-add/product-add.compo
 import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { UserComponent } from './layout/user/user.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 
 
 const routes: Routes = [
+  {
+    path: "", component: UserComponent, children: [
+      { path: "", component: HomePageComponent },
+      { path: "product", component: ProductPageComponent },
+      { path: "product/:id", component: ProductDetailComponent }
+    ]
+  },
+  { path: "signup", component: SignUpComponent },
 
   {
     path: "admin", component: AdminComponent, children: [

@@ -1,1 +1,29 @@
-<p>product-page works!</p>
+<div class="container">
+    <h1 class="text-center my-3">{{title}}</h1>
+    <hr />
+
+    <div class="table table-bordered">
+        <div *ngIf="products && products.length" class=" grid grid-cols-3 gap-4 ">
+            <div *ngFor="let product of products; index as i">
+
+                <div routerLink="/product/{{product._id}}">
+                    <div>
+                        <img src="{{ product.img }}" class="mx-auto h-48 w-full object-cover md:w-48 " />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="font-medium">
+                            <a routerLink="/product/{{product._id}}"
+                                class="uppercase tracking-wide text-2xl text-indigo-500 font-semibold">{{ product.name
+                                }}
+                            </a>
+                        </h3>
+                        <h4>{{ product.price }}</h4>
+                        <button class="bg-cyan-400 p-2 px-5 font-bold rounded-lg  hover:bg-red-400">Buy</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
