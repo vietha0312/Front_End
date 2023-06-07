@@ -6,10 +6,12 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { ProductAddComponent } from './pages/admin/product-add/product-add.component';
 import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+
 
 
 const routes: Routes = [
-  { path: "", component: ProductListComponent },
+
   {
     path: "admin", component: AdminComponent, children: [
       { path: "", redirectTo: "dashboard", pathMatch: "full", },
