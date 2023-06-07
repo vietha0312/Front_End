@@ -1,0 +1,77 @@
+<form class="max-w-md mx-auto py-4 px-8 bg-white shadow-lg rounded-lg mt-5" [formGroup]="formSignup"
+    (ngSubmit)="onHandleSubmit()">
+    <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">Đăng ký</h2>
+
+    <!-- Tên đăng nhập -->
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="name">
+            Tên đăng nhập
+        </label>
+        <input
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name" name="name" type="text" formControlName="name">
+        <div *ngIf="
+            formSignup.get('name')?.hasError('required') &&
+            (formSignup.get('name')?.touched || formSignup.get('name')?.dirty)" class="text-red-600">
+            Tên đăng nhập không được để trống!</div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="email">
+            Email
+        </label>
+        <input
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="email" name="email" type="email" formControlName="email">
+        <div *ngIf="
+            formSignup.get('email')?.hasError('required') &&
+            (formSignup.get('email')?.touched || formSignup.get('email')?.dirty)" class="text-red-600">
+            Email không được để trống!</div>
+        <div *ngIf="
+            formSignup.get('email')?.hasError('email') &&
+            (formSignup.get('email')?.touched || formSignup.get('email')?.dirty)" class="text-red-600">
+            Email không đúng định dạng !</div>
+    </div>
+
+    <!-- Mật khẩu -->
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="password">
+            Mật khẩu
+        </label>
+        <input
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="password" name="password" type="password" formControlName="password">
+        <div *ngIf="
+            formSignup.get('password')?.hasError('required') &&
+            (formSignup.get('password')?.touched || formSignup.get('password')?.dirty)" class="text-red-600">
+            Mật khẩu không được để trống!
+        </div>
+        <div *ngIf="
+            formSignup.get('password')?.hasError('minlength') &&
+            (formSignup.get('password')?.touched || formSignup.get('password')?.dirty)" class="text-red-600">
+            Độ dài Mật khẩu ít nhất 6 ký tự!
+        </div>
+    </div>
+
+    <!-- Nhập lại mật khẩu -->
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="confirmPassword">
+            Nhập lại mật khẩu
+        </label>
+        <input
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword">
+        <div *ngIf="formSignup.hasError('notMatch') && (formSignup.get('confirmPassword')?.dirty || formSignup.get('confirmPassword')?.touched)"
+            class="text-red-600">Mật khẩu nhập lại không khớp!</div>
+    </div>
+
+    <!-- Button Đăng ký -->
+    <div class="flex items-center justify-between">
+        <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit">
+            Đăng ký
+        </button>
+    </div>
+</form>
