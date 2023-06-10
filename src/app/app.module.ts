@@ -17,6 +17,7 @@ import { ProductUpdateComponent } from './pages/admin/product-update/product-upd
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     ProductUpdateComponent,
     DashboardComponent,
     SignUpComponent,
-    HomePageComponent
+    HomePageComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
