@@ -11,6 +11,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { UserComponent } from './layout/user/user.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
     ]
   },
   { path: "signup", component: SignUpComponent },
+  { path: "signin", component: SigninComponent },
 
   {
     path: "admin", component: AdminComponent, children: [
