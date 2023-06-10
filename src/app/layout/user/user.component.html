@@ -1,19 +1,39 @@
 <div class="container-fluid">
-    <div class="">
-        <div class="bg-gray-400 flex">
+    <div class="bg-white font-family-karla">
+        <!-- <div class="bg-gray-400 flex">
             <div class="mx-5 py-2 text-lg font-bold">
                 <a routerLink="">Home</a>
             </div>
             <div class="py-2 text-lg font-bold ">
                 <a routerLink="product">Product</a>
+            </div> -->
+        <nav class="w-full py-4 bg-blue-800 shadow">
+            <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
+
+                <nav>
+                    <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                        <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Home</a></li>
+                        <li><a class="hover:text-gray-200 hover:underline px-4" href="#">About</a></li>
+                        <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Product</a></li>
+                    </ul>
+                </nav>
             </div>
 
-        </div>
+        </nav>
         <div class="mx-auto my-3">
             <main class="text-center">
                 <router-outlet />
             </main>
         </div>
-        <footer class="font-bold text-center">FOOTER</footer>
+        <footer class="font-bold text-center">
+            <div class="w-full container mx-auto flex flex-col items-center">
+                <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
+                    <a href="#" class="uppercase px-3">About Us</a>
+                    <a href="#" class="uppercase px-3">Product</a>
+                    <a href="#" class="uppercase px-3">Contact Us</a>
+                </div>
+                <div class="uppercase pb-6">&copy; WjbuWorld</div>
+            </div>
+        </footer>
     </div>
 </div>
