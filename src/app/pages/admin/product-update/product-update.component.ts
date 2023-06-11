@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/Product';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/Services/Product/product.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.scss']
+  templateUrl: './product-update.component.html',
+  styleUrls: ['./product-update.component.scss']
 })
 export class ProductEditComponent {
   product: IProduct = {
@@ -39,7 +39,7 @@ export class ProductEditComponent {
     if (this.productForm.invalid) return;
 
     const product: IProduct = {
-      id: this.product.id,
+     _id: this.product._id,
       name: this.productForm.value.name || '',
       price: this.productForm.value.price || 0
     }

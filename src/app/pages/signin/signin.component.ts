@@ -23,7 +23,7 @@ export class SigninComponent {
   onHandleSubmit() {
     if (this.formLogin.valid) {
       this.authService.loggin(this.formLogin.value).subscribe(data => {
-        console.log(data);
+        localStorage.setItem('userInfo',JSON.stringify(data))
         this.router.navigate(['/admin']);
       });
     }

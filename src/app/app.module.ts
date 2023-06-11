@@ -13,11 +13,12 @@ import { AdminProductComponent } from './pages/admin/admin-product/admin-product
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductAddComponent } from './pages/admin/product-add/product-add.component';
-import { ProductUpdateComponent } from './pages/admin/product-update/product-update.component';
+
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { ProductEditComponent } from './pages/admin/product-update/product-update.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { SigninComponent } from './pages/signin/signin.component';
     ProductPageComponent,
     ProductDetailComponent,
     ProductAddComponent,
-    ProductUpdateComponent,
+ProductEditComponent,
     DashboardComponent,
     SignUpComponent,
     HomePageComponent,
