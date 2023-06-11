@@ -22,12 +22,9 @@ export class ProductListComponent {
     });
 
   }
-  removeItem(id: any) {
-    // xoa API
-    this.productService.deleteProduct(id).subscribe(() => {
-      // reRender
-      this.products = this.products.filter(item => item._id !== id)
+  removeItem(_id: any) {
+    this.productService.deleteProduct(_id).subscribe(() => {
+      this.products = this.products.filter(item => item._id !== _id)
     })
-    // this.onRemove.emit(id);
   }
 }
