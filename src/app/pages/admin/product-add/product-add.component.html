@@ -1,7 +1,26 @@
-<form [formGroup]="productForm" (ngSubmit)="onHandleSubmit()">
-  <input type="text" formControlName="name" />
-  <input type="text" formControlName="price" />
-  <input type="file" (change)="onFileSelected($event)" />
-
-  <button type="submit" [disabled]="!productForm.valid">Submit</button>
+<form [formGroup]="productForm" (ngSubmit)="onHandleSubmit()"
+  class="max-w-2xl mx-auto py-4 px-8 bg-white shadow-lg rounded-lg mt-5">
+  <div class="mb-3">
+    <input type="text" formControlName="name" name="name" class="form-control" placeholder="Tên sản phẩm" />
+    <div *ngIf="
+    productForm.get('name')?.hasError('required') &&
+            (productForm.get('name')?.touched || productForm.get('name')?.dirty)" class="text-red-600">
+      Tên sản phẩm không được để trống!</div>
+  </div>
+  <div class="mb-3">
+    <input type="number" formControlName="price" name="price" class="form-control" placeholder="Giá sản phẩm" />
+    <div *ngIf="
+    productForm.get('price')?.hasError('required') &&
+            (productForm.get('price')?.touched || productForm.get('price')?.dirty)" class="text-red-600">
+      Giá sản phẩm không được để trống!</div>
+  </div>
+  <div class="mb-3">
+    <input type="text" formControlName="image" name="image" class="form-control" placeholder="Ảnh sản phẩm" />
+    <div *ngIf="
+    productForm.get('image')?.hasError('required') &&
+            (productForm.get('image')?.touched || productForm.get('image')?.dirty)" class="text-red-600">
+      Ảnh sản phẩm không được để trống!</div>
+  </div>
+  <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary">Thêm sản
+    phẩm</button>
 </form>

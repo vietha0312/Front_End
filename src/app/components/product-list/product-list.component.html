@@ -1,27 +1,37 @@
-
 <div class="container">
-    <table class="table table-borederd">
+
+    <div>
+        <button class="bg-teal-400 p-2 rounded-sm m-3">
+            <a routerLink="/admin/product/add" class=" font-bold">Thêm sản phẩm</a>
+        </button>
+    </div>
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
+                <th class="text-xl">#</th>
+                <th class="text-xl">Ảnh</th>
+                <th class="text-xl">Tên sản phẩm</th>
+                <th class="text-xl">Giá</th>
                 <th></th>
             </tr>
         </thead>
         <tbody *ngIf="products && products.length">
-
             <tr *ngFor="let product of products; index as i">
-                <td>{{ i + 1 }}</td>
-                <td><img src="{{ product.img }}" /></td>
-                <td>{{ product.name }}</td>
+                <td class="font-bold">{{ i + 1 }}</td>
+                <td><img src="{{ product.image }}" class="mx-auto" /></td>
+                <td class="font-medium">{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                    <button class="btn btn-danger mr-1" (click)="removeItem(product._id)">
-                        Xóa
-                    </button>
-                    <!-- <a routerLink="/admin/product/{{ product._id }}/edit">Cập nhật</a> -->
+                    <div class="">
+                        <button class="bg-red-600 py-2 px-3 mx-2 rounded-md text-white font-bold"
+                            (click)="removeItem(product._id)">
+                            Xóa
+                        </button>
+                        <button class="bg-teal-500 py-2 px-3 mx-2 rounded-md ">
+                            <a routerLink="/admin/product/{{ product._id }}/edit" class="text-white font-bold">Cập
+                                nhật</a>
+                        </button>
+                    </div>
                 </td>
             </tr>
         </tbody>

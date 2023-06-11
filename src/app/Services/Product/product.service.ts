@@ -20,10 +20,14 @@ export class ProductService {
     return this.http.get<IProduct>(`${this.API_Url}/products/${_id}`)
   }
   addProduct(product: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(`${this.API_Url}/products`, product)
+    return this.http.post<IProduct>(`${this.API_Url}/products`, product, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${this.Token}`)
+    })
   }
   updateProduct(product: IProduct): Observable<IProduct> {
-    return this.http.put<IProduct>(`${this.API_Url}/products/${product._id}`, product)
+    return this.http.put<IProduct>(`${this.API_Url}/products/${product._id}`, product, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${this.Token}`)
+    })
   }
   deleteProduct(_id: string): Observable<IResponse> {
     return this.http.delete<IResponse>(`${this.API_Url}/products/${_id}`, {
