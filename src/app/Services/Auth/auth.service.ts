@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IUser } from 'src/app/interfaces/User';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,5 +16,8 @@ export class AuthService {
   }
   loggin(user: any): Observable<any> {
     return this.http.post(`${this.API_Url}/signin`, user)
+  }
+  isAuthen(){
+    return JSON.parse(localStorage.getItem('userInfo')|| '{}')
   }
 }
