@@ -21,6 +21,15 @@
             (productForm.get('image')?.touched || productForm.get('image')?.dirty)" class="text-red-600">
       Ảnh sản phẩm không được để trống!</div>
   </div>
-  <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary">Thêm sản
-    phẩm</button>
+  <div class="mb-3">
+    <select formControlName="category" name="category" class="form-control">
+      <option value="">Chọn danh mục</option>
+      <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+    </select>
+    <div *ngIf="
+      productForm.get('category')?.hasError('required') &&
+      (productForm.get('category')?.touched || productForm.get('category')?.dirty)" class="text-red-600">
+      Vui lòng chọn danh mục!</div>
+  </div>
+  <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary">Thêm sản phẩm</button>
 </form>
