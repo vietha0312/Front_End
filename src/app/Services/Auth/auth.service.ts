@@ -20,4 +20,11 @@ export class AuthService {
   isAuthen(){
     return JSON.parse(localStorage.getItem('userInfo')|| '{}')
   }
+  setAuthenticatedUser(user: any): void {
+    localStorage.setItem('userInfo', JSON.stringify(user));
+  }
+
+  clearAuthenticatedUser(): void {
+    localStorage.removeItem('userInfo');
+  }
 }
