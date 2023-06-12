@@ -9,29 +9,25 @@ import { ProductService } from 'src/app/Services/Product/product.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent {
-  product : IProduct = {
-    name: "",
-    price: 0
-  }
-  category: any = {}
+
+  productSlug: string | null = '';
+  product: IProduct = {
+    _id: '',
+    name: '',
+    price: 0,
+    image: '',
+
+  };
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
-  )
-  {
-    this.route.paramMap.subscribe(param => {
-      const id = Number(param.get('id'));
-      this.productService.getProductById(id).subscribe(product => {
-        this.product = product
-      })
-    })
+  ) {
+    this.productSlug = this.route.snapshot.paramMap.get('slug');
+    console.log(this.productSlug);
+    this.productService.getProductById(this.productSlug).subscribe((data) => {
+      console.log(data);
+      this.product = data;
+    });
   }
-  ngOnInit(){
-    this.getCategory();
-  }
-  getCategory() {
-    this.productService.relatedProducts(1).subscribe(data => {
-      this.category = data
-    })
-  }
+
 }

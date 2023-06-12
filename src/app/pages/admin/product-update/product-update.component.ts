@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IProduct } from 'src/app/interfaces/Product';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/Services/Product/product.service';
-import { FormBuilder } from '@angular/forms';
+import { IProduct } from 'src/app/interfaces/Product';
 
 @Component({
   selector: 'app-product-edit',
@@ -13,42 +13,42 @@ export class ProductEditComponent {
   product: IProduct = {
     name: "",
     price: 0,
-    image:''
+    image: ""
   }
   productForm = this.formBuilder.group({
     name: [''],
     price: [0],
-    image:['']
+    image: ['']
   })
   constructor(
-    private productService: ProductService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) {
-
-    // Observable
-    this.route.paramMap.subscribe(param => {
-      const id = Number(param.get('_id'));
-      this.productService.getProductById(id).subscribe(product => {
-        this.product = product;
-        this.productForm.patchValue({
-          name: product.name,
-          price: product.price,
-          image:product.image
-        })
-      })
+    private router: Router,
+    private productService: ProductService,
+    private formBuilder: FormBuilder
+  ) {
+    const _id = this.route.snapshot.paramMap.get('_id');
+    this.productService.getProductById(_id).subscribe((product: IProduct) => {
+      this.product = product;
+      this.productForm.setValue({
+        name: product.name,
+        image: product.image ?? null,
+        price: product.price
+      });
     })
   }
-  onHandleSubmit() {
+
+  onSubmit() {
     if (this.productForm.invalid) return;
 
     const product: IProduct = {
-     _id: this.product._id,
+      _id: this.product._id,
       name: this.productForm.value.name || '',
       price: this.productForm.value.price || 0,
-      image: this.productForm.value.image || ''
+      image: this.productForm.value.image || '',
     }
+
     this.productService.updateProduct(product).subscribe(data => {
-      console.log(data)
+      this.router.navigate(['/admin/product']);
     })
   }
 }

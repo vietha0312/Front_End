@@ -21,19 +21,19 @@ const routes: Routes = [
     path: "", component: UserComponent, children: [
       { path: "", component: HomePageComponent },
       { path: "product", component: ProductPageComponent },
-      { path: "product/:id", component: ProductDetailComponent }
+      { path: "product/:slug", component: ProductDetailComponent }
     ]
   },
   { path: "signup", component: SignUpComponent },
   { path: "signin", component: SigninComponent },
 
   {
-    path: "admin", component: AdminComponent,canActivate:[AuthGuard], children: [
+    path: "admin", component: AdminComponent, canActivate: [AuthGuard], children: [
       { path: "", redirectTo: "dashboard", pathMatch: "full", },
       { path: "dashboard", component: DashboardComponent },
       { path: "product", component: ProductListComponent },
       { path: "product/add", component: ProductAddComponent },
-      { path: "product/:id/update", component: ProductEditComponent },
+      { path: "product/:slug/update", component: ProductEditComponent },
     ]
   },
   { path: "**", component: PageNotFoundComponent },

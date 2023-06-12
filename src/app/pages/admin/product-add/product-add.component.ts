@@ -8,59 +8,59 @@ import { CategoryService } from 'src/app/Services/Category/category.service';
 import { ICategory } from 'src/app/interfaces/Category';
 
 @Component({
-  selector: 'app-product-add',
-  templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.scss']
+    selector: 'app-product-add',
+    templateUrl: './product-add.component.html',
+    styleUrls: ['./product-add.component.scss']
 })
 export class ProductAddComponent implements OnInit {
 
-   
-        categories: ICategory[] = [];
-      
-        productForm = this.formBuilder.group({
-          name: ['', [Validators.required, Validators.minLength(4)]],
-          price: [0, [Validators.required]],
-          image: ['', [Validators.required]],
-          category: ['', [Validators.required]]
-        });
-      
-        constructor(
-          private formBuilder: FormBuilder,
-          private productService: ProductService,
-          private categoryService: CategoryService,
-          private router: Router
-        ) {}
-      
-        ngOnInit() {
-          this.getCategories();
-        }
-      
-        getCategories(): void {
-          this.categoryService.getCategories()
+
+    categories: ICategory[] = [];
+
+    productForm = this.formBuilder.group({
+        name: ['', [Validators.required, Validators.minLength(4)]],
+        price: [0, [Validators.required]],
+        image: ['', [Validators.required]],
+        categoryId: ['', [Validators.required]]
+    });
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private productService: ProductService,
+        private categoryService: CategoryService,
+        private router: Router
+    ) { }
+
+    ngOnInit() {
+        this.getCategories();
+    }
+
+    getCategories(): void {
+        this.categoryService.getCategories()
             .subscribe(
-              categories => {
-                this.categories = categories;
-              },
-              error => {
-                console.log(error);
-              }
+                categories => {
+                    this.categories = categories;
+                },
+                error => {
+                    console.log(error);
+                }
             );
-        }
-      
-        onHandleSubmit() {
-          if (this.productForm.invalid) {
+    }
+
+    onHandleSubmit() {
+        if (this.productForm.invalid) {
             return;
-          }
-      
-          const product: IProduct = {
+        }
+
+        const product: IProduct = {
             name: this.productForm.value.name || '',
             price: this.productForm.value.price || 0,
             image: this.productForm.value.image || '',
-            category: this.productForm.value.category || ''
-          };
-      
-          this.productService.addProduct(product).subscribe(data => {
+            categoryId: this.productForm.value.categoryId || ''
+        };
+
+        this.productService.addProduct(product).subscribe(data => {
             this.router.navigate(['/admin/product']);
-          });
-        }
-      }
+        });
+    }
+}

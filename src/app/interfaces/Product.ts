@@ -3,7 +3,8 @@ export interface IProduct {
     name: string;
     price: number;
     image?: string;
-    category?: string; 
+    slug?: string;
+    categoryId?: string;
 }
 export interface IResponse {
     message: string;

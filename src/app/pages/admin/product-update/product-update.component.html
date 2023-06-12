@@ -1,13 +1,68 @@
-<form [formGroup]="productForm" (ngSubmit)="onHandleSubmit()">
+<!-- <form [formGroup]="productForm" (ngSubmit)="handleUpdateProduct()"
+    class="max-w-2xl mx-auto py-4 px-8 bg-white shadow-lg rounded-lg mt-5">
     <div class="mb-3">
         <input type="text" formControlName="name" name="name" class="form-control" placeholder="Tên sản phẩm" />
+        <div *ngIf="
+    productForm.get('name')?.hasError('required') &&
+            (productForm.get('name')?.touched || productForm.get('name')?.dirty)" class="text-red-600">
+            Tên sản phẩm không được để trống!</div>
     </div>
     <div class="mb-3">
         <input type="number" formControlName="price" name="price" class="form-control" placeholder="Giá sản phẩm" />
+        <div *ngIf="
+    productForm.get('price')?.hasError('required') &&
+            (productForm.get('price')?.touched || productForm.get('price')?.dirty)" class="text-red-600">
+            Giá sản phẩm không được để trống!</div>
     </div>
     <div class="mb-3">
         <input type="text" formControlName="image" name="image" class="form-control" placeholder="Ảnh sản phẩm" />
+        <div *ngIf="
+    productForm.get('image')?.hasError('required') &&
+            (productForm.get('image')?.touched || productForm.get('image')?.dirty)" class="text-red-600">
+            Ảnh sản phẩm không được để trống!</div>
     </div>
-    <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary">Cập nhật sản
+    <div class="mb-3">
+        <select formControlName="categoryId" name="categoryId" class="form-control">
+            <option value="">Chọn danh mục</option>
+            <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <input type="text" formControlName="categoryId" name="categoryId" class="form-control"
+            placeholder="categoryId sản phẩm" />
+
+    </div>
+    <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary">Thêm sản
         phẩm</button>
-</form>
+</form> -->
+<h1>Update Product</h1>
+
+<div>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name:</label>
+            <input formControlName="name" id="name" type="text" />
+            <div *ngIf="productForm.get('name')?.touched && productForm.get('name')?.errors">
+                Name is required.
+            </div>
+        </div>
+
+        <div>
+            <label for="description">image:</label>
+            <textarea formControlName="image" id="image"></textarea>
+            <div *ngIf="productForm.get('image')?.touched && productForm.get('image')?.errors">
+                Description is required.
+            </div>
+        </div>
+
+        <div>
+            <label for="price">Price:</label>
+            <input formControlName="price" id="price" type="number" step="0.01" />
+            <div *ngIf="productForm.get('price')?.touched && productForm.get('price')?.errors">
+                Price is required.
+            </div>
+        </div>
+
+        <button type="submit">Update Product</button>
+    </form>
+</div>

@@ -6,7 +6,7 @@
         <div *ngIf="products && products.length" class=" grid grid-cols-3 gap-4 ">
             <div *ngFor="let product of products; index as i">
 
-                <div routerLink="/product/{{product._id}}">
+                <div routerLink="/product/{{product.name}}">
                     <div>
                         <img src="{{ product.image }}" class="mx-auto h-48 w-full object-cover md:w-48 " />
                     </div>
