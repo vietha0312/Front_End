@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 export class AdminComponent {
   constructor(private authService: AuthService, private router: Router) { }
   signOut() {
-    // Xóa thông tin đăng nhập từ localStorage
+  
     this.authService.clearAuthenticatedUser();
 
-    // Chuyển hướng người dùng đến trang đăng nhập
+    
     this.router.navigate(['/signin']);
   }
 }

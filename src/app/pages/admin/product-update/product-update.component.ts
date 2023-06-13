@@ -9,46 +9,63 @@ import { IProduct } from 'src/app/interfaces/Product';
   templateUrl: './product-update.component.html',
   styleUrls: ['./product-update.component.scss']
 })
-export class ProductEditComponent {
+export class ProductEditComponent implements OnInit {
   product: IProduct = {
-    name: "",
+    _id: '',
+    name: '',
     price: 0,
-    image: ""
-  }
-  productForm = this.formBuilder.group({
-    name: [''],
-    price: [0],
-    image: ['']
-  })
+    image: ''
+  };
+
+  productForm: FormGroup;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
     private formBuilder: FormBuilder
   ) {
-    const _id = this.route.snapshot.paramMap.get('_id');
-    this.productService.getProductById(_id).subscribe((product: IProduct) => {
-      this.product = product;
-      this.productForm.setValue({
-        name: product.name,
-        image: product.image ?? null,
-        price: product.price
+    this.productForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      price: [0, Validators.required],
+      image: ['']
+    });
+  }
+  ngOnInit() {
+    const productId = this.route.snapshot.paramMap.get('id');
+    console.log(productId);
+    if (productId) {
+      this.productService.getProductById(productId).subscribe((product: IProduct) => {
+        this.product = product;
+        this.productForm.setValue({
+          name: product.name,
+          price: product.price,
+          image: product.image
+        });
       });
-    })
+    }
   }
 
   onSubmit() {
-    if (this.productForm.invalid) return;
-
-    const product: IProduct = {
-      _id: this.product._id,
-      name: this.productForm.value.name || '',
-      price: this.productForm.value.price || 0,
-      image: this.productForm.value.image || '',
+    if (this.productForm.invalid) {
+      return;
     }
-
-    this.productService.updateProduct(product).subscribe(data => {
-      this.router.navigate(['/admin/product']);
-    })
+  
+    const updatedProduct: IProduct = {
+      _id: this.product._id,
+      name: this.productForm.value.name,
+      price: this.productForm.value.price,
+      image: this.productForm.value.image
+    };
+  
+    this.productService.updateProduct(updatedProduct).subscribe(
+      () => {
+        this.router.navigate(['/admin/product']);
+      },
+      (error) => {
+        console.error(error);
+        
+      }
+    );
   }
 }

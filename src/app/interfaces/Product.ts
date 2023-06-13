@@ -3,7 +3,7 @@ export interface IProduct {
     name: string;
     price: number;
     image?: string;
-    slug?: string;
+ desc?:string;
     categoryId?: string;
 }
 export interface IResponse {

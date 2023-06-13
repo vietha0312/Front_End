@@ -1,29 +1,25 @@
 <div class="container">
-    <h1 class="text-center my-3">{{title}}</h1>
+    <h1 class="text-center my-3 text-4xl font-bold">Sản phẩm</h1>
     <hr />
-
-    <div class="table table-bordered">
-        <div *ngIf="products && products.length" class=" grid grid-cols-3 gap-4 ">
-            <div *ngFor="let product of products; index as i">
-
-                <div routerLink="/product/{{product.name}}">
-                    <div>
-                        <img src="{{ product.image }}" class="mx-auto h-48 w-full object-cover md:w-48 " />
-                    </div>
-                    <div class="text-center">
-                        <h3 class="font-medium">
-                            <a routerLink="/product/{{product._id}}"
-                                class="uppercase tracking-wide text-2xl text-indigo-500 font-semibold">{{ product.name
-                                }}
-                            </a>
-                        </h3>
-                        <h4>{{ product.price }}</h4>
-                        <button class="bg-cyan-400 p-2 px-5 font-bold rounded-lg  hover:bg-red-400">Buy</button>
-                    </div>
-                </div>
-
-
-            </div>
+  
+    <div class="grid grid-cols-3 gap-4">
+      <div *ngFor="let product of products; index as i">
+        <div class="border border-gray-300 rounded-md p-4">
+          <div class="text-center">
+            <img src="{{ product.image }}" class="mx-auto h-48 w-full object-cover md:w-48" />
+          </div>
+          <div class="text-center mt-4">
+            <h3 class="font-semibold text-xl text-indigo-500">
+              <a [routerLink]="['/product', product._id]"
+                class="uppercase">{{ product.name }}</a>
+            </h3>
+            <h4 class="mt-2 text-gray-600">Giá: {{ product.price }} đ</h4>
+            <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-indigo-600">
+              Mua ngay
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
