@@ -1,6 +1,16 @@
-<div class="product-details-container">
-    <h1>{{ product.name }}</h1>
-    <img [src]="product.image" alt="product image" />
-    <p class="product-price">Price: {{ product.price | currency }}</p>
-
-</div>
+<div *ngIf="message">
+    <h1 class="text-center my-3">{{ message }}</h1>
+    <div *ngIf="product">
+      <h1 class="text-center my-3">{{product.name }}</h1>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <img [src]="product.image" class="mx-auto h-48 w-full object-cover" />
+        </div>
+        <div>
+          <h3 class="font-medium">Price: {{ product.price }}</h3>
+          <p>Description: {{ product.desc }}</p>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>

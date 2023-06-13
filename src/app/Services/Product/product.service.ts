@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
 import { IProduct, IResponse } from 'src/app/interfaces/Product';
 @Injectable({
   providedIn: 'root'
@@ -16,27 +16,34 @@ export class ProductService {
   getProducts(): Observable<IResponse> {
     return this.http.get<IResponse>(`${this.API_Url}/products`)
   }
-  getProductById(slug: any): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.API_Url}/products/${slug}`)
+  getProductById(productId: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.API_Url}/products/${productId}`).pipe(
+      map((product: IProduct) => {
+        if (productId) {
+          product._id = productId; 
+        }
+        return product;
+      })
+    );
   }
   addProduct(product: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>(`${this.API_Url}/products`, product, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${this.Token}`)
     })
   }
-  // updateProduct(product: IProduct): Observable<IProduct> {
-  //   return this.http.put<IProduct>(`${this.API_Url}/products/${product._id}`, product, {
-  //     headers: new HttpHeaders().set('Authorization', `Bearer ${this.Token}`)
-  //   })
-  // }
-  updateProduct(product: IProduct): Observable<any> {
+ 
+  updateProduct(product: IProduct): Observable<IProduct> {
+  
+  
     const id = product._id;
-    const url = `${this.API_Url}/${id}`;
-
+    const url = `${this.API_Url}/products/${id}`;
+  
     const body = JSON.stringify(product);
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-
-    return this.http.put<IProduct>(url, body, { headers: new HttpHeaders().set('Authorization', `Bearer ${this.Token}`) });
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${this.Token}`);
+  
+    return this.http.put<IProduct>(url, body, { headers: headers });
   }
   deleteProduct(_id: string): Observable<IResponse> {
     return this.http.delete<IResponse>(`${this.API_Url}/products/${_id}`, {
