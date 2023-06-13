@@ -1,37 +1,52 @@
-<div class="container">
-
-    <div>
-        <button class="bg-teal-400 p-2 rounded-sm m-3">
-            <a routerLink="/admin/product/add" class=" font-bold">Thêm sản phẩm</a>
-        </button>
-    </div>
-    <table class="table table-bordered">
-        <thead>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <button class="bg-teal-400 p-2 rounded-sm m-3">
+        <a routerLink="/admin/product/add" class="font-bold">Thêm sản phẩm</a>
+    </button>
+    <table class="w-75 mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th class="text-xl">#</th>
-                <th class="text-xl">Ảnh</th>
-                <th class="text-xl">Tên sản phẩm</th>
-                <th class="text-xl">Giá</th>
-                <th></th>
+                <th scope="col" class="px-6 py-3">
+                    Product name
+                </th>
+           
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+               
+                <th scope="col" class="px-6 py-3">
+                    Category
+                </th>
+                 
+                <th scope="col" class="px-6 py-3">
+                    Ảnh
+                </th>
+                
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
             </tr>
         </thead>
-        <tbody *ngIf="products && products.length">
-            <tr *ngFor="let product of products; index as i">
-                <td class="font-bold">{{ i + 1 }}</td>
-                <td><img src="{{ product.image }}" class="mx-auto" /></td>
-                <td class="font-medium">{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                    <div class="">
-                        <button class="bg-red-600 py-2 px-3 mx-2 rounded-md text-white font-bold"
-                            (click)="removeItem(product._id)">
-                            Xóa
-                        </button>
-                        <button class="bg-teal-500 py-2 px-3 mx-2 rounded-md ">
-                            <a routerLink="/admin/product/{{ product._id }}/update" class="text-white font-bold">Cập
-                                nhật</a>
-                        </button>
-                    </div>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ product.name }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ product.price }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ product.category?.name }}
+                </td>
+                <td class="px-6 py-4">
+                    <img src="{{ product.image }}" class="mx-auto" style="height: 200px; width: 300px;" />
+                </td>
+                <td class="px-6 py-4 btn-primary rounded-md space-x-10">
+                    <button class="bg-teal-500 py-2 px-3 mx-2 rounded-md">
+                        <a routerLink="/admin/product/{{ product._id }}/update" class="text-white font-bold text-decoration-none">Cập nhật</a>
+                    </button>
+                    <button class="bg-red-600 py-2 px-3 mx-2 rounded-md text-white font-bold" (click)="removeItem(product._id)">
+                        Xóa
+                    </button>
                 </td>
             </tr>
         </tbody>

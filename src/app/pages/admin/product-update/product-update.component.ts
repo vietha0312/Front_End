@@ -14,7 +14,8 @@ export class ProductEditComponent implements OnInit {
     _id: '',
     name: '',
     price: 0,
-    image: ''
+    image: '',
+    categoryId:''
   };
 
   productForm: FormGroup;
@@ -40,7 +41,8 @@ export class ProductEditComponent implements OnInit {
         this.productForm.setValue({
           name: product.name,
           price: product.price,
-          image: product.image
+          image: product.image,
+          
         });
       });
     }
@@ -60,6 +62,7 @@ export class ProductEditComponent implements OnInit {
   
     this.productService.updateProduct(updatedProduct).subscribe(
       () => {
+        alert('Cập nhật thành công')
         this.router.navigate(['/admin/product']);
       },
       (error) => {
