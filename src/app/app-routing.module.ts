@@ -21,11 +21,12 @@ const routes: Routes = [
     path: "", component: UserComponent, children: [
       { path: "", component: HomePageComponent },
       { path: "product", component: ProductPageComponent },
-      { path: "product/:id", component: ProductDetailComponent }
+      { path: "product/:id", component: ProductDetailComponent },
+      { path: "signup", component: SignUpComponent },
+      { path: "signin", component: SigninComponent },
     ]
   },
-  { path: "signup", component: SignUpComponent },
-  { path: "signin", component: SigninComponent },
+ 
 
   {
     path: "admin", component: AdminComponent,canActivate:[AuthGuard], children: [

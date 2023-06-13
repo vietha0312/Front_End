@@ -24,7 +24,7 @@ export class SigninComponent {
     if (this.formLogin.valid) {
       this.authService.loggin(this.formLogin.value).subscribe(data => {
         localStorage.setItem('userInfo', JSON.stringify(data))
-        this.router.navigate(['']);
+        this.router.navigate(['/admin']);
       });
     }
   }
