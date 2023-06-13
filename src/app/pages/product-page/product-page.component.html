@@ -1,25 +1,25 @@
-<div class="container">
-    <h1 class="text-center my-3 text-4xl font-bold">Sản phẩm</h1>
-    <hr />
-  
-    <div class="grid grid-cols-3 gap-4">
-      <div *ngFor="let product of products; index as i">
-        <div class="border border-gray-300 rounded-md p-4">
-          <div class="text-center">
-            <img src="{{ product.image }}" class="mx-auto h-48 w-full object-cover md:w-48" />
+<div class="min-h-screen body-font text-gray-600">
+    <div class="container mx-auto px-5 py-10">
+      <div class="-m-4 flex flex-wrap">
+        <div class="w-full p-4 md:w-1/2 lg:w-1/4" *ngFor="let product of products; index as i">
+          <div class="relative block h-48 overflow-hidden rounded">
+            <img alt="ecommerce" class="block h-full w-full object-cover object-center cursor-pointer" [src]="product.image" />
           </div>
-          <div class="text-center mt-4">
-            <h3 class="font-semibold text-xl text-indigo-500">
-              <a [routerLink]="['/product', product._id]"
-                class="uppercase">{{ product.name }}</a>
+          <div class="mt-4">
+            <h3 class="title-font mb-1 text-xs tracking-widest text-gray-500">  <a [routerLink]="['/product', product._id]"
+                class="uppercase hover:text-indigo-600">{{ product.name }}</a>
             </h3>
-            <h4 class="mt-2 text-gray-600">Giá: {{ product.price }} đ</h4>
-            <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-indigo-600">
-              Mua ngay
-            </button>
+         
+            <p class="mt-1">{{ product.price }}</p>
+            <form>
+            
+        
+              <button class="bg-indigo-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-indigo-600">
+                Mua ngay
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
